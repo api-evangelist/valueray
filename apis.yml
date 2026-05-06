@@ -1,0 +1,13 @@
+aid: valueray
+url: https://raw.githubusercontent.com/api-evangelist/valueray/refs/heads/main/apis.yml
+name: ValueRay
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+description: 'AI-ready financial data API for stocks and ETFs.'
+created: '2026-05-06'
+modified: '2026-05-06'
+specificationVersion: '0.19'
+tags:
+  - API
+url-source: https://www.valueray.com/
+apis: []
