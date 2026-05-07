@@ -1,0 +1,101 @@
+vocabulary: 0.1
+provider: ValueRay
+description: >-
+  Vocabulary mapping the ValueRay Symbol Data API onto operational and
+  capability dimensions: identity, classification, market, dividends,
+  technical analysis, risk, levels, performance, and sentiment.
+domains:
+  - name: Identity
+    terms:
+      - code
+      - exchange
+      - isin
+      - type
+      - name
+      - currency
+      - country
+      - country_origin
+  - name: Classification
+    terms:
+      - sector
+      - industry
+      - peer_group
+      - etf_category
+      - keywords
+  - name: Market
+    terms:
+      - last_update
+      - market_cap_in_millions
+  - name: Dividends
+    terms:
+      - rate
+      - yield
+      - payout_ratio
+      - growth_5y
+      - streak_years
+      - next_payment
+  - name: Technical
+    terms:
+      - last_price
+      - 52w_high
+      - 52w_low
+      - ema_20
+      - sma_50
+      - sma_200
+      - atr
+      - volatility
+      - current_volume
+      - average_volume_20d
+      - hurst_exponent
+      - trend_correlation
+  - name: Risk
+    terms:
+      - safety_score
+      - beta
+      - alpha
+      - sharpe_ratio
+      - max_drawdown
+      - value_at_risk
+      - tail_risk
+  - name: Levels
+    terms:
+      - support_resistance
+      - zigzag_pivot_points
+      - changepoints
+  - name: Performance
+    terms:
+      - 1d
+      - 1w
+      - 1m
+      - 3m
+      - 6m
+      - ytd
+      - 1y
+      - 3y
+      - 5y
+      - cagr
+      - relative_strength
+  - name: Sentiment
+    terms:
+      - rsi
+      - vro_score
+      - buy_signal
+      - sector_rotation
+      - industry_rotation
+      - market_regime
+capabilities:
+  - name: Symbol Data Retrieval
+    description: Retrieve aggregated AI-ready data for a single stock or ETF symbol.
+    operations:
+      - getSymbolData
+  - name: AI Agent Analysis
+    description: Provide an LLM-friendly snapshot with metric definitions to ground analysis.
+    operations:
+      - getSymbolData
+tags:
+  - AI/LLM
+  - ETF
+  - Financial Data
+  - Quantitative
+  - Stocks
+  - Technical Analysis

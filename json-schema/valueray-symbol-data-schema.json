@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/valueray/main/json-schema/valueray-symbol-data-schema.json",
+  "title": "ValueRay Symbol Data",
+  "description": "AI-ready aggregate of technical, quantitative, sentiment, risk, and performance data for a single stock or ETF symbol.",
+  "type": "object",
+  "required": ["code", "exchange", "type", "name"],
+  "properties": {
+    "last_update": { "type": "string", "description": "Timestamp of the last data refresh." },
+    "code": { "type": "string", "description": "Ticker code." },
+    "exchange": { "type": "string", "description": "Listing exchange." },
+    "isin": { "type": "string", "description": "International Securities Identification Number." },
+    "type": { "type": "string", "description": "Instrument type, e.g. 'common stock' or 'etf'." },
+    "name": { "type": "string", "description": "Issuer or fund name." },
+    "currency": { "type": "string" },
+    "country": { "type": "string" },
+    "country_origin": { "type": "string" },
+    "market_cap_in_millions": { "type": "string" },
+    "sector": { "type": "string" },
+    "industry": { "type": "string" },
+    "peer_group": { "type": "string" },
+    "etf_category": { "type": "string", "description": "Category label for ETFs." },
+    "keywords": { "type": "string" },
+    "dividends": {
+      "type": "object",
+      "properties": {
+        "rate": { "type": "number" },
+        "yield": { "type": "number" },
+        "payout_ratio": { "type": "number" },
+        "growth_5y": { "type": "number" },
+        "streak_years": { "type": "integer" },
+        "next_payment": { "type": "string" }
+      }
+    },
+    "technical": {
+      "type": "object",
+      "properties": {
+        "last_price": { "type": "number" },
+        "52w_high": { "type": "number" },
+        "52w_low": { "type": "number" },
+        "ema_20": { "type": "number" },
+        "sma_50": { "type": "number" },
+        "sma_200": { "type": "number" },
+        "atr": { "type": "number" },
+        "volatility": { "type": "number" },
+        "current_volume": { "type": "number" },
+        "average_volume_20d": { "type": "number" },
+        "hurst_exponent": { "type": "number" },
+        "trend_correlation": { "type": "number" }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "properties": {
+        "safety_score": { "type": "number" },
+        "beta": { "type": "number" },
+        "alpha": { "type": "number" },
+        "sharpe_ratio": { "type": "number" },
+        "max_drawdown": { "type": "number" },
+        "value_at_risk": { "type": "number" },
+        "tail_risk": { "type": "number" }
+      }
+    },
+    "support_resistance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": { "type": "number" },
+          "type": { "type": "string", "enum": ["support", "resistance"] },
+          "strength": { "type": "string" },
+          "from": { "type": "string" },
+          "to": { "type": "string" }
+        }
+      }
+    },
+    "zigzag_pivot_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string" },
+          "price": { "type": "number" },
+          "direction": { "type": "string", "enum": ["up", "down"] }
+        }
+      }
+    },
+    "changepoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string" },
+          "metric": { "type": "string" },
+          "value": { "type": "number" }
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "properties": {
+        "1d": { "type": "number" },
+        "1w": { "type": "number" },
+        "1m": { "type": "number" },
+        "3m": { "type": "number" },
+        "6m": { "type": "number" },
+        "ytd": { "type": "number" },
+        "1y": { "type": "number" },
+        "3y": { "type": "number" },
+        "5y": { "type": "number" },
+        "cagr": { "type": "number" },
+        "relative_strength": { "type": "number" }
+      }
+    },
+    "sentiment": {
+      "type": "object",
+      "properties": {
+        "rsi": { "type": "number" },
+        "vro_score": { "type": "number" },
+        "buy_signal": { "type": "string" },
+        "sector_rotation": { "type": "string" },
+        "industry_rotation": { "type": "string" },
+        "market_regime": { "type": "string" }
+      }
+    }
+  }
+}

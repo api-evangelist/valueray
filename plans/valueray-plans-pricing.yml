@@ -1,0 +1,56 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: ValueRay
+providerId: valueray
+created: '2026-05-06'
+modified: '2026-05-06'
+reconciled: false
+tags:
+  - AI/LLM
+  - ETF
+  - Financial Data
+  - Quantitative
+  - Stocks
+  - Technical Analysis
+description: >-
+  ValueRay currently exposes a free public tier of its AI-ready symbol data
+  API throttled at one request per minute. A premium tier has been
+  signaled but is not yet published. This profile captures the available
+  free tier and is marked unreconciled until ValueRay publishes a formal
+  pricing page.
+sources:
+  - https://www.valueray.com/api
+  - https://www.valueray.com/
+plans:
+  - id: valueray-free
+    name: Free
+    type: freemium
+    description: Free public access to the ValueRay Symbol Data API throttled to one request per minute.
+    entries:
+      - label: Per-minute rate limit
+        name: rate_limit
+        type: quota
+        metric: requests_per_minute
+        limit: 1
+        timeFrame: minute
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Symbol Data API access
+      - name: Stocks and ETFs coverage
+      - name: AI/LLM-friendly responses with field explanation pointers
+  - id: valueray-premium
+    name: Premium (Announced)
+    type: subscription
+    description: ValueRay has signaled a premium tier with higher rate limits and additional capabilities,
+      but pricing and feature details have not yet been published.
+    entries: []
+    elements:
+      - name: Higher rate limits (TBD)
+      - name: Additional capabilities (TBD)
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,41 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: ValueRay
+providerId: valueray
+created: '2026-05-06'
+modified: '2026-05-06'
+reconciled: false
+tags:
+  - AI/LLM
+  - Financial Data
+  - Rate Limiting
+  - Stocks
+description: >-
+  ValueRay throttles its free public Symbol Data API at one request per
+  minute. No paid tier with elevated limits has been published. This
+  profile is marked unreconciled until ValueRay publishes formal rate
+  limit documentation; values reflect the throttle observed and reported
+  in coverage of the API as of May 2026.
+sources:
+  - https://www.valueray.com/api
+  - https://www.valueray.com/
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+limits:
+  - name: Free tier per-minute throttle
+    scope: ip-or-token
+    metric: requests_per_minute
+    limit: 1
+    timeFrame: minute
+    notes: Reported throttle for the free public tier; canonical published documentation has not been observed.
+policies:
+  - name: AI agent friendly
+    description: Responses are designed for LLM consumption, including a field_explanations URL pointing at
+      published metric definitions so agents can ground responses without re-querying.
+  - name: Premium tier planned
+    description: A premium tier with higher rate limits has been signaled but is not yet documented.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

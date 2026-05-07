@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/schema/v0",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/valueray/main/json-structure/valueray-symbol-data-structure.json",
+  "title": "ValueRay Symbol Data Structure",
+  "description": "Documented JSON structure of the ValueRay Symbol Data response, organized into identity, market, technical, risk, sentiment, and performance domains.",
+  "type": "object",
+  "domains": [
+    {
+      "name": "identity",
+      "description": "Core identifiers locating the symbol on its exchange.",
+      "fields": ["code", "exchange", "isin", "type", "name", "currency", "country", "country_origin"]
+    },
+    {
+      "name": "classification",
+      "description": "Sector, industry, peer group, ETF category, and descriptive keywords.",
+      "fields": ["sector", "industry", "peer_group", "etf_category", "keywords"]
+    },
+    {
+      "name": "market",
+      "description": "Market capitalization and last update timestamp.",
+      "fields": ["last_update", "market_cap_in_millions"]
+    },
+    {
+      "name": "dividends",
+      "description": "Dividend rate, yield, payout, growth, and streak.",
+      "object": "dividends"
+    },
+    {
+      "name": "technical",
+      "description": "Price metrics, moving averages, volatility, and volume statistics.",
+      "object": "technical"
+    },
+    {
+      "name": "risk",
+      "description": "Risk-adjusted performance metrics and tail-risk indicators.",
+      "object": "risk"
+    },
+    {
+      "name": "levels",
+      "description": "Support, resistance, zigzag pivot points, and detected change points.",
+      "fields": ["support_resistance", "zigzag_pivot_points", "changepoints"]
+    },
+    {
+      "name": "performance",
+      "description": "Trailing returns across multiple horizons and CAGR.",
+      "object": "performance"
+    },
+    {
+      "name": "sentiment",
+      "description": "Sentiment indicators including RSI, VRO score, buy signals, and rotation.",
+      "object": "sentiment"
+    }
+  ],
+  "envelope": {
+    "description": "The Symbol Data response wraps the SymbolData object under a descriptive key '<type>: <code> (<name>) on <exchange>' and adds a top-level 'disclaimer' string and 'field_explanations' URL pointing at the canonical metric definitions.",
+    "fields": ["disclaimer", "field_explanations"]
+  }
+}

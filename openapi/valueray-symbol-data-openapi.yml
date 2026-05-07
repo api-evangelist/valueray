@@ -1,0 +1,350 @@
+openapi: 3.0.3
+info:
+  title: ValueRay Symbol Data API
+  description: >-
+    AI-ready financial data API returning a comprehensive snapshot of
+    technical, quantitative, sentiment, risk, and performance data for a
+    single stock or ETF symbol. Responses are designed for AI agents and
+    LLMs that need explainable financial overviews of specific symbols.
+  version: '1.0'
+  contact:
+    name: ValueRay
+    url: https://www.valueray.com/
+  termsOfService: https://www.valueray.com/
+servers:
+  - url: https://www.valueray.com/api/v1
+    description: ValueRay API v1 production endpoint
+tags:
+  - name: Symbol Data
+    description: Aggregated technical, quantitative, and sentiment data for a single symbol.
+paths:
+  /symbolData:
+    get:
+      summary: Get Symbol Data
+      description: >-
+        Returns an AI-ready aggregate of technical, quantitative, and
+        sentiment data for the supplied stock or ETF symbol, including
+        market identifiers, market cap, dividend information, technical
+        indicators, risk metrics, support and resistance levels, zigzag
+        pivot points, change points, performance returns, and sentiment
+        scoring.
+      operationId: getSymbolData
+      tags:
+        - Symbol Data
+      parameters:
+        - name: symbol
+          in: query
+          required: true
+          description: Ticker symbol of the stock or ETF (e.g., AAPL, SPY, VTI).
+          schema:
+            type: string
+            example: AAPL
+      responses:
+        '200':
+          description: Aggregated symbol data response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SymbolDataResponse'
+              examples:
+                aapl:
+                  summary: Apple Inc (AAPL) common stock
+                  value:
+                    'common stock: AAPL (Apple Inc) on NASDAQ':
+                      last_update: '2026-05-06 18:09:33'
+                      code: AAPL
+                      exchange: NASDAQ
+                      isin: US0378331005
+                      type: common stock
+                      name: Apple Inc
+                      currency: USD
+                      country: USA
+                      country_origin: United States
+                      market_cap_in_millions: '3983727.39'
+                      sector: Technology
+                      industry: Consumer Electronics
+                      peer_group: Technology Hardware, Storage & Peripherals
+                      keywords: Smartphones, Computers, Tablets, Wearables, Digital Services
+                    disclaimer: All data is for informational purposes and does not constitute financial advice. Always combine it with your own research.
+                    field_explanations: https://www.valueray.com/prompts/_explanations.md
+        '400':
+          description: Bad request (e.g., missing or invalid symbol parameter).
+        '403':
+          description: Forbidden (e.g., authentication or rate limit gating).
+        '429':
+          description: Too many requests (rate limit exceeded).
+components:
+  schemas:
+    SymbolDataResponse:
+      type: object
+      description: >-
+        Top-level wrapper. Contains a single descriptive key whose value is
+        a SymbolData object, plus disclaimer and field_explanations
+        pointers. The descriptive key follows the pattern
+        "{type}: {code} ({name}) on {exchange}".
+      additionalProperties:
+        oneOf:
+          - $ref: '#/components/schemas/SymbolData'
+          - type: string
+      required:
+        - disclaimer
+        - field_explanations
+      properties:
+        disclaimer:
+          type: string
+          description: Standard informational disclaimer.
+        field_explanations:
+          type: string
+          format: uri
+          description: URL to the canonical field definitions and scoring logic document.
+    SymbolData:
+      type: object
+      description: Aggregated symbol data covering identity, market, technical, risk, sentiment, and performance dimensions.
+      properties:
+        last_update:
+          type: string
+          description: Timestamp of the last data refresh.
+          example: '2026-05-06 18:09:33'
+        code:
+          type: string
+          description: Ticker code.
+          example: AAPL
+        exchange:
+          type: string
+          description: Listing exchange.
+          example: NASDAQ
+        isin:
+          type: string
+          description: International Securities Identification Number.
+          example: US0378331005
+        type:
+          type: string
+          description: Instrument type (e.g., "common stock", "etf").
+          example: common stock
+        name:
+          type: string
+          description: Issuer or fund display name.
+          example: Apple Inc
+        currency:
+          type: string
+          description: Listing currency code.
+          example: USD
+        country:
+          type: string
+          description: Listing country code.
+          example: USA
+        country_origin:
+          type: string
+          description: Country of origin or domicile (display name).
+          example: United States
+        market_cap_in_millions:
+          type: string
+          description: Market capitalization in millions of the listing currency.
+          example: '3983727.39'
+        sector:
+          type: string
+          description: GICS-style sector classification.
+          example: Technology
+        industry:
+          type: string
+          description: GICS-style industry classification.
+          example: Consumer Electronics
+        peer_group:
+          type: string
+          description: Sub-industry or peer group label used for percentile comparisons.
+          example: Technology Hardware, Storage & Peripherals
+        etf_category:
+          type: string
+          description: Category label for ETFs (e.g., "Large Blend"). Stocks omit this field.
+          example: Large Blend
+        keywords:
+          type: string
+          description: Comma-separated descriptive keywords for the issuer or fund.
+        dividends:
+          $ref: '#/components/schemas/Dividends'
+        technical:
+          $ref: '#/components/schemas/Technical'
+        risk:
+          $ref: '#/components/schemas/Risk'
+        support_resistance:
+          type: array
+          description: Identified support and resistance levels with strength ratings.
+          items:
+            $ref: '#/components/schemas/SupportResistanceLevel'
+        zigzag_pivot_points:
+          type: array
+          description: Pivot points generated by a zigzag algorithm tracking price reversals.
+          items:
+            $ref: '#/components/schemas/ZigzagPivot'
+        changepoints:
+          type: array
+          description: Detected regime change points in the price or volume series.
+          items:
+            $ref: '#/components/schemas/Changepoint'
+        performance:
+          $ref: '#/components/schemas/Performance'
+        sentiment:
+          $ref: '#/components/schemas/Sentiment'
+    Dividends:
+      type: object
+      description: Dividend rate, yield, growth, and payout details.
+      properties:
+        rate:
+          type: number
+          description: Most recent annual dividend rate.
+        yield:
+          type: number
+          description: Annual dividend yield as a percentage.
+        payout_ratio:
+          type: number
+          description: Payout ratio as a percentage of earnings.
+        growth_5y:
+          type: number
+          description: 5-year dividend growth rate.
+        streak_years:
+          type: integer
+          description: Number of consecutive years of dividend growth or payment.
+        next_payment:
+          type: string
+          description: Status or scheduled date of the next dividend payment.
+    Technical:
+      type: object
+      description: Technical indicators and price/volume metrics.
+      properties:
+        last_price:
+          type: number
+        '52w_high':
+          type: number
+        '52w_low':
+          type: number
+        ema_20:
+          type: number
+        sma_50:
+          type: number
+        sma_200:
+          type: number
+        atr:
+          type: number
+          description: Average True Range.
+        volatility:
+          type: number
+          description: Volatility percentage.
+        current_volume:
+          type: number
+        average_volume_20d:
+          type: number
+        hurst_exponent:
+          type: number
+          description: Hurst exponent for trend persistence (commonly returned for ETFs).
+        trend_correlation:
+          type: number
+          description: Trend correlation against a reference (commonly returned for ETFs).
+    Risk:
+      type: object
+      description: Risk-adjusted performance and tail-risk metrics.
+      properties:
+        safety_score:
+          type: number
+          description: Composite safety score (0-100).
+          example: 86.7
+        beta:
+          type: number
+        alpha:
+          type: number
+        sharpe_ratio:
+          type: number
+        max_drawdown:
+          type: number
+        value_at_risk:
+          type: number
+          description: Value at Risk metric.
+        tail_risk:
+          type: number
+          description: Tail risk assessment.
+    SupportResistanceLevel:
+      type: object
+      description: A support or resistance price level with strength rating and date range.
+      properties:
+        level:
+          type: number
+        type:
+          type: string
+          enum: [support, resistance]
+        strength:
+          type: string
+          description: Strength rating (e.g., weak, moderate, strong).
+        from:
+          type: string
+        to:
+          type: string
+    ZigzagPivot:
+      type: object
+      description: A zigzag pivot point indicating a price reversal.
+      properties:
+        date:
+          type: string
+        price:
+          type: number
+        direction:
+          type: string
+          enum: [up, down]
+    Changepoint:
+      type: object
+      description: A detected regime change point in the price or volume series.
+      properties:
+        date:
+          type: string
+        metric:
+          type: string
+        value:
+          type: number
+    Performance:
+      type: object
+      description: Trailing return metrics across multiple horizons.
+      properties:
+        '1d':
+          type: number
+        '1w':
+          type: number
+        '1m':
+          type: number
+        '3m':
+          type: number
+        '6m':
+          type: number
+        ytd:
+          type: number
+        '1y':
+          type: number
+        '3y':
+          type: number
+        '5y':
+          type: number
+        cagr:
+          type: number
+          description: Compound annual growth rate.
+        relative_strength:
+          type: number
+          description: Relative strength score versus the broader market.
+    Sentiment:
+      type: object
+      description: Sentiment indicators including RSI, VRO score, and rotation signals.
+      properties:
+        rsi:
+          type: number
+          description: Relative Strength Index.
+        vro_score:
+          type: number
+          description: ValueRay's proprietary VRO score.
+        buy_signal:
+          type: string
+          description: Aggregate buy/sell/neutral indicator.
+        sector_rotation:
+          type: string
+          description: Sector rotation classification.
+        industry_rotation:
+          type: string
+          description: Industry rotation classification.
+        market_regime:
+          type: string
+          description: Detected market regime label.

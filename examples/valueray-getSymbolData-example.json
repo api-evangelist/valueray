@@ -1,0 +1,96 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.valueray.com/api/v1/symbolData?symbol=AAPL",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "common stock: AAPL (Apple Inc) on NASDAQ": {
+        "last_update": "2026-05-06 18:09:33",
+        "code": "AAPL",
+        "exchange": "NASDAQ",
+        "isin": "US0378331005",
+        "type": "common stock",
+        "name": "Apple Inc",
+        "currency": "USD",
+        "country": "USA",
+        "country_origin": "United States",
+        "market_cap_in_millions": "3983727.39",
+        "sector": "Technology",
+        "industry": "Consumer Electronics",
+        "peer_group": "Technology Hardware, Storage & Peripherals",
+        "keywords": "Smartphones, Computers, Tablets, Wearables, Digital Services",
+        "dividends": {
+          "rate": 1.04,
+          "yield": 0.37,
+          "payout_ratio": 15.4,
+          "growth_5y": 5.2,
+          "streak_years": 13,
+          "next_payment": "scheduled"
+        },
+        "technical": {
+          "last_price": 284.18,
+          "52w_high": 285.92,
+          "52w_low": 194.68,
+          "ema_20": 275.31,
+          "sma_50": 268.04,
+          "sma_200": 235.12,
+          "atr": 4.21,
+          "volatility": 22.4,
+          "current_volume": 41200000,
+          "average_volume_20d": 48750000
+        },
+        "risk": {
+          "safety_score": 86.7,
+          "beta": 1.21,
+          "alpha": 0.08,
+          "sharpe_ratio": 1.34,
+          "max_drawdown": -32.0,
+          "value_at_risk": -2.1,
+          "tail_risk": -4.6
+        },
+        "support_resistance": [
+          { "level": 270.5, "type": "support", "strength": "strong", "from": "2026-03-12", "to": "2026-05-06" },
+          { "level": 285.9, "type": "resistance", "strength": "moderate", "from": "2026-04-22", "to": "2026-05-06" }
+        ],
+        "zigzag_pivot_points": [
+          { "date": "2026-04-15", "price": 268.1, "direction": "up" },
+          { "date": "2026-04-29", "price": 285.92, "direction": "down" }
+        ],
+        "changepoints": [
+          { "date": "2026-02-04", "metric": "volatility", "value": 0.18 }
+        ],
+        "performance": {
+          "1d": 0.42,
+          "1w": 1.85,
+          "1m": 4.91,
+          "3m": 12.34,
+          "6m": 18.7,
+          "ytd": 22.1,
+          "1y": 36.8,
+          "3y": 88.4,
+          "5y": 192.3,
+          "cagr": 23.9,
+          "relative_strength": 78
+        },
+        "sentiment": {
+          "rsi": 62.4,
+          "vro_score": 81,
+          "buy_signal": "buy",
+          "sector_rotation": "leading",
+          "industry_rotation": "leading",
+          "market_regime": "risk-on"
+        }
+      },
+      "disclaimer": "All data is for informational purposes and does not constitute financial advice. Always combine it with your own research.",
+      "field_explanations": "https://www.valueray.com/prompts/_explanations.md"
+    }
+  }
+}

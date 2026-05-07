@@ -1,0 +1,82 @@
+extends: ["spectral:oas"]
+documentationUrl: https://www.valueray.com/api
+rules:
+  valueray-info-contact:
+    description: Info object MUST include a contact pointing at ValueRay.
+    severity: error
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+
+  valueray-server-base-url:
+    description: Servers MUST point at the canonical ValueRay API v1 base URL.
+    severity: error
+    given: $.servers[*]
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: "^https://www\\.valueray\\.com/api/v1$"
+
+  valueray-operation-summary-title-case:
+    description: Operation summaries MUST be Title Case.
+    severity: warn
+    given: $.paths.*.*.summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-zA-Z0-9]*)( [A-Z][a-zA-Z0-9]*)*$"
+
+  valueray-operation-id-camelcase:
+    description: Operation IDs MUST be camelCase.
+    severity: error
+    given: $.paths.*.*.operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  valueray-symbol-parameter-required:
+    description: Symbol-scoped operations MUST require a symbol query parameter.
+    severity: error
+    given: $.paths['/symbolData'].get.parameters[?(@.name=='symbol')]
+    then:
+      field: required
+      function: truthy
+
+  valueray-tag-allowlist:
+    description: Operation tags MUST come from the published tag set.
+    severity: warn
+    given: $.paths.*.*.tags[*]
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - Symbol Data
+
+  valueray-disclaimer-property:
+    description: SymbolDataResponse MUST include a disclaimer field.
+    severity: error
+    given: $.components.schemas.SymbolDataResponse
+    then:
+      field: required
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            const: disclaimer
+
+  valueray-field-explanations-property:
+    description: SymbolDataResponse MUST include a field_explanations URI.
+    severity: error
+    given: $.components.schemas.SymbolDataResponse
+    then:
+      field: required
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            const: field_explanations

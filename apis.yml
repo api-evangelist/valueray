@@ -3,11 +3,84 @@ url: https://raw.githubusercontent.com/api-evangelist/valueray/refs/heads/main/a
 name: ValueRay
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-description: 'AI-ready financial data API for stocks and ETFs.'
+tags:
+  - AI/LLM
+  - ETF
+  - Financial Data
+  - Quantitative
+  - Stocks
+  - Technical Analysis
+access: 3rd-Party
 created: '2026-05-06'
 modified: '2026-05-06'
+position: Consumer
 specificationVersion: '0.19'
-tags:
-  - API
-url-source: https://www.valueray.com/
-apis: []
+description: >-
+  AI-ready financial data API for stocks and ETFs. ValueRay aggregates
+  technical, quantitative, and sentiment data with risk metrics, peer
+  percentiles, and market regime signals into AI/LLM-friendly responses
+  optimized for agents that need explainable financial overviews of specific
+  symbols.
+apis:
+  - aid: valueray:symbol-data-api
+    name: ValueRay Symbol Data API
+    tags:
+      - AI/LLM
+      - ETF
+      - Quantitative
+      - Sentiment
+      - Stocks
+      - Symbol Data
+      - Technical Analysis
+    humanURL: https://www.valueray.com/api
+    baseURL: https://www.valueray.com/api/v1
+    properties:
+      - url: openapi/valueray-symbol-data-openapi.yml
+        type: OpenAPI
+      - url: https://www.valueray.com/api
+        type: Documentation
+      - url: https://www.valueray.com/prompts/_explanations.md
+        type: FieldDefinitions
+    description: >-
+      Returns a comprehensive AI-ready snapshot of a single stock or ETF
+      symbol, aggregating core identifiers (code, ISIN, exchange, sector,
+      industry, peer group), market data (market cap, last price, 52-week
+      range), dividend information (rate, yield, payout, growth, streak),
+      technical indicators (EMA, SMA, ATR, RSI, volatility, volume),
+      risk metrics (safety score, beta, alpha, Sharpe ratio, max drawdown,
+      VaR, tail risk), sentiment (VRO score, buy signals, sector and
+      industry rotation), support and resistance levels, zigzag pivot
+      points, change points, and performance returns from 1d through 5y.
+      Responses include field explanation pointers so AI agents can ground
+      their analysis in published metric definitions.
+common:
+  - url: https://www.valueray.com/
+    name: Website
+    type: Website
+  - url: https://www.valueray.com/api
+    name: API Documentation
+    type: Documentation
+  - url: https://www.valueray.com/prompts/_explanations.md
+    name: Field Definitions and Scoring Logic
+    type: FieldDefinitions
+  - url: https://www.valueray.com/presets/long-setups
+    name: Stocks and ETFs Screener Presets
+    type: Screener
+  - url: plans/valueray-plans-pricing.yml
+    name: Plans and Pricing
+    type: Plans
+  - url: rate-limits/valueray-rate-limits.yml
+    name: Rate Limits
+    type: RateLimits
+  - url: finops/valueray-finops.yml
+    name: FinOps
+    type: FinOps
+  - url: vocabulary/valueray-vocabulary.yml
+    name: Vocabulary
+    type: Vocabulary
+  - url: json-ld/valueray-context.jsonld
+    name: JSON-LD Context
+    type: JSONLD
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
