@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ValueRay Symbol Data API — Symbol Data
+  description: 'ValueRay Symbol Data API — Symbol Data. 1 operations. Lead operation: Get Symbol Data. Self-contained Naftiko
+    capability covering one Valueray business surface.'
+  tags:
+  - Valueray
+  - Symbol Data
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    VALUERAY_API_KEY: VALUERAY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: symbol-data-symbol-data
+    baseUri: https://www.valueray.com/api/v1
+    description: ValueRay Symbol Data API — Symbol Data business capability. Self-contained, no shared references.
+    resources:
+    - name: symbolData
+      path: /symbolData
+      operations:
+      - name: getsymboldata
+        method: GET
+        description: Get Symbol Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: symbol
+          in: query
+          type: string
+          description: Ticker symbol of the stock or ETF (e.g., AAPL, SPY, VTI).
+          required: true
+  exposes:
+  - type: rest
+    namespace: symbol-data-symbol-data-rest
+    port: 8080
+    description: REST adapter for ValueRay Symbol Data API — Symbol Data. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/symboldata
+      name: symboldata
+      description: REST surface for symbolData.
+      operations:
+      - method: GET
+        name: getsymboldata
+        description: Get Symbol Data
+        call: symbol-data-symbol-data.getsymboldata
+        with:
+          symbol: rest.symbol
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: symbol-data-symbol-data-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ValueRay Symbol Data API — Symbol Data. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-symbol-data
+      description: Get Symbol Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: symbol-data-symbol-data.getsymboldata
+      with:
+        symbol: tools.symbol
+      outputParameters:
+      - type: object
+        mapping: $.
