@@ -74,6 +74,8 @@ common:
 - url: json-ld/valueray-context.jsonld
   name: JSON-LD Context
   type: JSONLD
+- type: LLMsTxt
+  url: https://www.valueray.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
