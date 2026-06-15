@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ValueRay Symbol Data API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Symbol Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Symbol Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.valueray.com/api/v1/symbolData",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Ticker symbol of the stock or ETF (e.g., AAPL, SPY, VTI)."
+              }
+            ]
+          },
+          "docs": "Returns an AI-ready aggregate of technical, quantitative, and sentiment data for the supplied stock or ETF symbol, including market identifiers, market cap, dividend information, technical indicators, risk metrics, support and resistance levels, zigzag pivot points, change points, performance returns, and sentiment scoring."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

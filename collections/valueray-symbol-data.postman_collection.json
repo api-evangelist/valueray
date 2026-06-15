@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "567f7ed7-bcd2-41e2-93cd-6f0ca3afad26",
+      "name": "Symbol Data",
+      "description": {
+        "content": "Aggregated technical, quantitative, and sentiment data for a single symbol.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cb5fa832-cc72-40ec-9049-a34a5e404633",
+          "name": "Get Symbol Data",
+          "request": {
+            "name": "Get Symbol Data",
+            "description": {
+              "content": "Returns an AI-ready aggregate of technical, quantitative, and sentiment data for the supplied stock or ETF symbol, including market identifiers, market cap, dividend information, technical indicators, risk metrics, support and resistance levels, zigzag pivot points, change points, performance returns, and sentiment scoring.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "symbolData"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) Ticker symbol of the stock or ETF (e.g., AAPL, SPY, VTI)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ccdf60e7-4397-4b4b-9059-36d05110f35b",
+              "name": "Aggregated symbol data response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "symbolData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"common stock: AAPL (Apple Inc) on NASDAQ\": {\n    \"last_update\": \"2026-05-06 18:09:33\",\n    \"code\": \"AAPL\",\n    \"exchange\": \"NASDAQ\",\n    \"isin\": \"US0378331005\",\n    \"type\": \"common stock\",\n    \"name\": \"Apple Inc\",\n    \"currency\": \"USD\",\n    \"country\": \"USA\",\n    \"country_origin\": \"United States\",\n    \"market_cap_in_millions\": \"3983727.39\",\n    \"sector\": \"Technology\",\n    \"industry\": \"Consumer Electronics\",\n    \"peer_group\": \"Technology Hardware, Storage & Peripherals\",\n    \"keywords\": \"Smartphones, Computers, Tablets, Wearables, Digital Services\"\n  },\n  \"disclaimer\": \"All data is for informational purposes and does not constitute financial advice. Always combine it with your own research.\",\n  \"field_explanations\": \"https://www.valueray.com/prompts/_explanations.md\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aba03c07-fc84-4af3-8f4f-7581d393e028",
+              "name": "Bad request (e.g., missing or invalid symbol parameter).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "symbolData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e766bd9-88c0-40ac-9188-0bf76feb1d73",
+              "name": "Forbidden (e.g., authentication or rate limit gating).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "symbolData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bcc460f7-a239-461c-a101-cee13499c664",
+              "name": "Too many requests (rate limit exceeded).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "symbolData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.valueray.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "17883e0d-3074-49ef-8239-2e589822d917",
+    "name": "ValueRay Symbol Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AI-ready financial data API returning a comprehensive snapshot of technical, quantitative, sentiment, risk, and performance data for a single stock or ETF symbol. Responses are designed for AI agents and LLMs that need explainable financial overviews of specific symbols.\n\nContact Support:\n Name: ValueRay",
+      "type": "text/plain"
+    }
+  }
+}
