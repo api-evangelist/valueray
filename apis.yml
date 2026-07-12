@@ -48,6 +48,10 @@ apis:
       performance returns from 1d through 5y. Responses include field explanation pointers so AI agents can ground their
       analysis in published metric definitions.
 common:
+  - type: VulnerabilityDisclosure
+    url: security/valueray-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/valueray-domain-security.yml
   - url: https://www.valueray.com/
     name: Website
     type: Website
