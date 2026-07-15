@@ -48,6 +48,8 @@ apis:
       performance returns from 1d through 5y. Responses include field explanation pointers so AI agents can ground their
       analysis in published metric definitions.
 common:
+  - type: AgenticAccess
+    url: agentic-access/valueray-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/valueray-vulnerability-disclosure.yml
   - type: DomainSecurity
