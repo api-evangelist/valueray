@@ -1,0 +1,14 @@
+{
+  "provider": "valueray",
+  "sources": [
+    "valueray-symbol-data-api-openapi.yml"
+  ],
+  "outputs": [
+    "valueray-symbol-data-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
