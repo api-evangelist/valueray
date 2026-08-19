@@ -1,0 +1,33 @@
+# ValueRay
+
+> Stock screener and financial analysis platform for US equities and ETFs with proprietary ratings, options analytics, dividend screening and structured API access.
+> Built for developers creating financial dashboards, analysis tools or trading systems — and optimized for AI/LLM Agents (Agents First) that need structured data to quickly and reliably analyse any symbol.
+
+
+## About
+[ValueRay Overview](https://www.valueray.com/about): Stock screening platform with fundamental, technical and quantitative analysis
+[Methodology](https://www.valueray.com/prompts/_explanations.md): Detailed explanation of all proprietary indicators and metrics
+[API Documentation](https://www.valueray.com/api): REST API for programmatic access
+[OpenAPI Specification](https://www.valueray.com/api/v1/openapi.yaml): Machine-readable REST API schema
+[API Metadata](https://www.valueray.com/apis.json): API discovery metadata
+
+Stock Overview: https://www.valueray.com/symbol/{EXCHANGE}/{TICKER}
+Dividend History & Analysis: https://www.valueray.com/symbol/{EXCHANGE}/{TICKER}/dividends
+Search: https://www.valueray.com/search?q={QUERY}
+
+## Screeners
+Top Stocks: https://www.valueray.com/presets/long-setups
+Dividend Screener: https://www.valueray.com/presets/dividends
+Options Screener: https://www.valueray.com/presets/options
+
+## Peer Groups
+By GICS Sub-Industry: https://www.valueray.com/gicsubindustry/{NAME}
+
+## Data Coverage
+5,000+ US Stocks and ETFs. Fundamental, dividend and technical data updated daily (End-Of-Day).
+
+## AI / MCP Discovery
+Agents should prefer the MCP server for structured access to ValueRay data.
+    - MCP Server: https://www.valueray.com/mcp/api
+    - MCP Transport: Streamable HTTP
+    - REST/OpenAPI fallback: https://www.valueray.com/api/v1/openapi.yaml
