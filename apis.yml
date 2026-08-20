@@ -17,6 +17,13 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/valueray.png
 tags:
   - AI/LLM
+  - ETFs
+  - Financial Data
+  - Quantitative
+  - Stocks
+  - Technical Analysis
+tags_raw:
+  - AI/LLM
   - ETF
   - Financial Data
   - Quantitative
