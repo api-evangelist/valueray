@@ -44,7 +44,7 @@ tags_raw:
 access: 3rd-Party
 created: '2026-05-06'
 modified: '2026-05-19'
-position: Consumer
+position: Consuming
 specificationVersion: '0.23'
 description: >-
   AI-ready financial data API for stocks and ETFs. ValueRay aggregates technical, quantitative, and sentiment data with
