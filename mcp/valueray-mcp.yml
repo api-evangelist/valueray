@@ -1,0 +1,30 @@
+generated: '2026-09-11'
+method: probed
+source: https://www.valueray.com/mcp/api
+status: published
+server:
+  name: valueray
+  transport: http
+  url: https://www.valueray.com/mcp/api
+deployment:
+  mode: remote
+  endpoint: https://www.valueray.com/mcp/api
+  verified: probed
+  probe: live
+  checked: '2026-09-11'
+  source: docs-check 2026-09-11 (endpoint found in the provider's own documentation, then probed)
+  probe_why: docs-check
+tools_count: 5
+tools:
+- name: symbol_search
+  description: ''
+- name: symbol_data
+  description: ''
+- name: symbol_peers
+  description: ''
+- name: market_regime
+  description: ''
+- name: field_explanations
+  description: ''
+tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
+authorship: provider
