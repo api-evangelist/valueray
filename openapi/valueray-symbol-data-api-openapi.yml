@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: ValueRay Symbol Data API
   description: AI-ready financial data API returning a comprehensive snapshot of technical, quantitative, sentiment, risk, and performance data for a single stock or ETF symbol. Responses are designed for AI agents and LLMs that need explainable financial overviews of specific symbols.
@@ -65,24 +65,28 @@ paths:
           description: Too many requests (rate limit exceeded).
 components:
   schemas:
-    SymbolDataResponse:
+    Sentiment:
       type: object
-      description: 'Top-level wrapper. Contains a single descriptive key whose value is a SymbolData object, plus disclaimer and field_explanations pointers. The descriptive key follows the pattern "{type}: {code} ({name}) on {exchange}".'
-      additionalProperties:
-        oneOf:
-        - $ref: '#/components/schemas/SymbolData'
-        - type: string
-      required:
-      - disclaimer
-      - field_explanations
+      description: Sentiment indicators including RSI, VRO score, and rotation signals.
       properties:
-        disclaimer:
+        rsi:
+          type: number
+          description: Relative Strength Index.
+        vro_score:
+          type: number
+          description: ValueRay's proprietary VRO score.
+        buy_signal:
           type: string
-          description: Standard informational disclaimer.
-        field_explanations:
+          description: Aggregate buy/sell/neutral indicator.
+        sector_rotation:
           type: string
-          format: uri
-          description: URL to the canonical field definitions and scoring logic document.
+          description: Sector rotation classification.
+        industry_rotation:
+          type: string
+          description: Industry rotation classification.
+        market_regime:
+          type: string
+          description: Detected market regime label.
     Technical:
       type: object
       description: Technical indicators and price/volume metrics.
@@ -115,88 +119,6 @@ components:
         trend_correlation:
           type: number
           description: Trend correlation against a reference (commonly returned for ETFs).
-    Changepoint:
-      type: object
-      description: A detected regime change point in the price or volume series.
-      properties:
-        date:
-          type: string
-        metric:
-          type: string
-        value:
-          type: number
-    Performance:
-      type: object
-      description: Trailing return metrics across multiple horizons.
-      properties:
-        1d:
-          type: number
-        1w:
-          type: number
-        1m:
-          type: number
-        3m:
-          type: number
-        6m:
-          type: number
-        ytd:
-          type: number
-        1y:
-          type: number
-        3y:
-          type: number
-        5y:
-          type: number
-        cagr:
-          type: number
-          description: Compound annual growth rate.
-        relative_strength:
-          type: number
-          description: Relative strength score versus the broader market.
-    Sentiment:
-      type: object
-      description: Sentiment indicators including RSI, VRO score, and rotation signals.
-      properties:
-        rsi:
-          type: number
-          description: Relative Strength Index.
-        vro_score:
-          type: number
-          description: ValueRay's proprietary VRO score.
-        buy_signal:
-          type: string
-          description: Aggregate buy/sell/neutral indicator.
-        sector_rotation:
-          type: string
-          description: Sector rotation classification.
-        industry_rotation:
-          type: string
-          description: Industry rotation classification.
-        market_regime:
-          type: string
-          description: Detected market regime label.
-    Risk:
-      type: object
-      description: Risk-adjusted performance and tail-risk metrics.
-      properties:
-        safety_score:
-          type: number
-          description: Composite safety score (0-100).
-          example: 86.7
-        beta:
-          type: number
-        alpha:
-          type: number
-        sharpe_ratio:
-          type: number
-        max_drawdown:
-          type: number
-        value_at_risk:
-          type: number
-          description: Value at Risk metric.
-        tail_risk:
-          type: number
-          description: Tail risk assessment.
     Dividends:
       type: object
       description: Dividend rate, yield, growth, and payout details.
@@ -219,6 +141,37 @@ components:
         next_payment:
           type: string
           description: Status or scheduled date of the next dividend payment.
+    ZigzagPivot:
+      type: object
+      description: A zigzag pivot point indicating a price reversal.
+      properties:
+        date:
+          type: string
+        price:
+          type: number
+        direction:
+          type: string
+          enum:
+          - up
+          - down
+    SymbolDataResponse:
+      type: object
+      description: 'Top-level wrapper. Contains a single descriptive key whose value is a SymbolData object, plus disclaimer and field_explanations pointers. The descriptive key follows the pattern "{type}: {code} ({name}) on {exchange}".'
+      additionalProperties:
+        oneOf:
+        - $ref: '#/components/schemas/SymbolData'
+        - type: string
+      required:
+      - disclaimer
+      - field_explanations
+      properties:
+        disclaimer:
+          type: string
+          description: Standard informational disclaimer.
+        field_explanations:
+          type: string
+          format: uri
+          description: URL to the canonical field definitions and scoring logic document.
     SupportResistanceLevel:
       type: object
       description: A support or resistance price level with strength rating and date range.
@@ -237,19 +190,6 @@ components:
           type: string
         to:
           type: string
-    ZigzagPivot:
-      type: object
-      description: A zigzag pivot point indicating a price reversal.
-      properties:
-        date:
-          type: string
-        price:
-          type: number
-        direction:
-          type: string
-          enum:
-          - up
-          - down
     SymbolData:
       type: object
       description: Aggregated symbol data covering identity, market, technical, risk, sentiment, and performance dimensions.
@@ -338,3 +278,63 @@ components:
           $ref: '#/components/schemas/Performance'
         sentiment:
           $ref: '#/components/schemas/Sentiment'
+    Changepoint:
+      type: object
+      description: A detected regime change point in the price or volume series.
+      properties:
+        date:
+          type: string
+        metric:
+          type: string
+        value:
+          type: number
+    Performance:
+      type: object
+      description: Trailing return metrics across multiple horizons.
+      properties:
+        1d:
+          type: number
+        1w:
+          type: number
+        1m:
+          type: number
+        3m:
+          type: number
+        6m:
+          type: number
+        ytd:
+          type: number
+        1y:
+          type: number
+        3y:
+          type: number
+        5y:
+          type: number
+        cagr:
+          type: number
+          description: Compound annual growth rate.
+        relative_strength:
+          type: number
+          description: Relative strength score versus the broader market.
+    Risk:
+      type: object
+      description: Risk-adjusted performance and tail-risk metrics.
+      properties:
+        safety_score:
+          type: number
+          description: Composite safety score (0-100).
+          example: 86.7
+        beta:
+          type: number
+        alpha:
+          type: number
+        sharpe_ratio:
+          type: number
+        max_drawdown:
+          type: number
+        value_at_risk:
+          type: number
+          description: Value at Risk metric.
+        tail_risk:
+          type: number
+          description: Tail risk assessment.
