@@ -65,28 +65,16 @@ paths:
           description: Too many requests (rate limit exceeded).
 components:
   schemas:
-    Sentiment:
+    Changepoint:
       type: object
-      description: Sentiment indicators including RSI, VRO score, and rotation signals.
+      description: A detected regime change point in the price or volume series.
       properties:
-        rsi:
+        date:
+          type: string
+        metric:
+          type: string
+        value:
           type: number
-          description: Relative Strength Index.
-        vro_score:
-          type: number
-          description: ValueRay's proprietary VRO score.
-        buy_signal:
-          type: string
-          description: Aggregate buy/sell/neutral indicator.
-        sector_rotation:
-          type: string
-          description: Sector rotation classification.
-        industry_rotation:
-          type: string
-          description: Industry rotation classification.
-        market_regime:
-          type: string
-          description: Detected market regime label.
     Technical:
       type: object
       description: Technical indicators and price/volume metrics.
@@ -119,6 +107,28 @@ components:
         trend_correlation:
           type: number
           description: Trend correlation against a reference (commonly returned for ETFs).
+    Sentiment:
+      type: object
+      description: Sentiment indicators including RSI, VRO score, and rotation signals.
+      properties:
+        rsi:
+          type: number
+          description: Relative Strength Index.
+        vro_score:
+          type: number
+          description: ValueRay's proprietary VRO score.
+        buy_signal:
+          type: string
+          description: Aggregate buy/sell/neutral indicator.
+        sector_rotation:
+          type: string
+          description: Sector rotation classification.
+        industry_rotation:
+          type: string
+          description: Industry rotation classification.
+        market_regime:
+          type: string
+          description: Detected market regime label.
     Dividends:
       type: object
       description: Dividend rate, yield, growth, and payout details.
@@ -141,55 +151,6 @@ components:
         next_payment:
           type: string
           description: Status or scheduled date of the next dividend payment.
-    ZigzagPivot:
-      type: object
-      description: A zigzag pivot point indicating a price reversal.
-      properties:
-        date:
-          type: string
-        price:
-          type: number
-        direction:
-          type: string
-          enum:
-          - up
-          - down
-    SymbolDataResponse:
-      type: object
-      description: 'Top-level wrapper. Contains a single descriptive key whose value is a SymbolData object, plus disclaimer and field_explanations pointers. The descriptive key follows the pattern "{type}: {code} ({name}) on {exchange}".'
-      additionalProperties:
-        oneOf:
-        - $ref: '#/components/schemas/SymbolData'
-        - type: string
-      required:
-      - disclaimer
-      - field_explanations
-      properties:
-        disclaimer:
-          type: string
-          description: Standard informational disclaimer.
-        field_explanations:
-          type: string
-          format: uri
-          description: URL to the canonical field definitions and scoring logic document.
-    SupportResistanceLevel:
-      type: object
-      description: A support or resistance price level with strength rating and date range.
-      properties:
-        level:
-          type: number
-        type:
-          type: string
-          enum:
-          - support
-          - resistance
-        strength:
-          type: string
-          description: Strength rating (e.g., weak, moderate, strong).
-        from:
-          type: string
-        to:
-          type: string
     SymbolData:
       type: object
       description: Aggregated symbol data covering identity, market, technical, risk, sentiment, and performance dimensions.
@@ -278,16 +239,46 @@ components:
           $ref: '#/components/schemas/Performance'
         sentiment:
           $ref: '#/components/schemas/Sentiment'
-    Changepoint:
+    Risk:
       type: object
-      description: A detected regime change point in the price or volume series.
+      description: Risk-adjusted performance and tail-risk metrics.
       properties:
-        date:
-          type: string
-        metric:
-          type: string
-        value:
+        safety_score:
           type: number
+          description: Composite safety score (0-100).
+          example: 86.7
+        beta:
+          type: number
+        alpha:
+          type: number
+        sharpe_ratio:
+          type: number
+        max_drawdown:
+          type: number
+        value_at_risk:
+          type: number
+          description: Value at Risk metric.
+        tail_risk:
+          type: number
+          description: Tail risk assessment.
+    SymbolDataResponse:
+      type: object
+      description: 'Top-level wrapper. Contains a single descriptive key whose value is a SymbolData object, plus disclaimer and field_explanations pointers. The descriptive key follows the pattern "{type}: {code} ({name}) on {exchange}".'
+      additionalProperties:
+        oneOf:
+        - $ref: '#/components/schemas/SymbolData'
+        - type: string
+      required:
+      - disclaimer
+      - field_explanations
+      properties:
+        disclaimer:
+          type: string
+          description: Standard informational disclaimer.
+        field_explanations:
+          type: string
+          format: uri
+          description: URL to the canonical field definitions and scoring logic document.
     Performance:
       type: object
       description: Trailing return metrics across multiple horizons.
@@ -316,25 +307,34 @@ components:
         relative_strength:
           type: number
           description: Relative strength score versus the broader market.
-    Risk:
+    SupportResistanceLevel:
       type: object
-      description: Risk-adjusted performance and tail-risk metrics.
+      description: A support or resistance price level with strength rating and date range.
       properties:
-        safety_score:
+        level:
           type: number
-          description: Composite safety score (0-100).
-          example: 86.7
-        beta:
+        type:
+          type: string
+          enum:
+          - support
+          - resistance
+        strength:
+          type: string
+          description: Strength rating (e.g., weak, moderate, strong).
+        from:
+          type: string
+        to:
+          type: string
+    ZigzagPivot:
+      type: object
+      description: A zigzag pivot point indicating a price reversal.
+      properties:
+        date:
+          type: string
+        price:
           type: number
-        alpha:
-          type: number
-        sharpe_ratio:
-          type: number
-        max_drawdown:
-          type: number
-        value_at_risk:
-          type: number
-          description: Value at Risk metric.
-        tail_risk:
-          type: number
-          description: Tail risk assessment.
+        direction:
+          type: string
+          enum:
+          - up
+          - down
