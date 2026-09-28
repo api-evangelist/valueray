@@ -17,14 +17,18 @@ deployment:
 tools_count: 5
 tools:
 - name: symbol_search
-  description: ''
+  description: Resolve a company name, ticker or ISIN to ranked symbol suggestions with code, name, exchange
+    and ISIN.
 - name: symbol_data
-  description: ''
+  description: Get structured technical, quantitative, dividend, risk and sentiment data for a stock or
+    ETF.
 - name: symbol_peers
-  description: ''
+  description: Get peer comparison data and percentile metrics for a stock or ETF.
 - name: market_regime
-  description: ''
+  description: Get current market regime, risk, breadth, volatility and sector rotation data.
 - name: field_explanations
-  description: ''
+  description: Get field definitions and scoring logic for ValueRay metrics, indicators and ratings.
 tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
