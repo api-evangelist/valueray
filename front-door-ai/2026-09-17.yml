@@ -1,0 +1,31 @@
+# Front Door AI Index — valueray — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: valueray
+  lexicon_version: '1.0'
+  probed_at: '2026-09-25'
+  host: www.valueray.com
+  final_host: www.valueray.com
+  ownership: own
+  owner: valueray
+  shares_host_with: null
+  inherited_from: null
+  alias_of: null
+  verdict: scored
+  score: 11
+  band: 5
+  band_label: prominent
+  host_score: 11
+  density: 7.01
+  words: 1570
+  tiers:
+    agentic: 4
+    core: 7
+    model: 0
+  ambiguous: 1
+  top_terms:
+    AI: 7
+    MCP: 3
+    automation: 1
+    prompts: 1
