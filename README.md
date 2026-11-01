@@ -1,4 +1,4 @@
-# ValueRay (valueray)
+# ValueRay
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,69 +66,159 @@
 
 AI-ready financial data API for stocks and ETFs. ValueRay aggregates technical, quantitative, and sentiment data with risk metrics, peer percentiles, and market regime signals into AI/LLM-friendly responses optimized for agents that need explainable financial overviews of specific symbols.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/valueray/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/valueray/refs/heads/main/apis.yml)
+**Areas:** AI/LLM · ETFs · Financial Data · Quantitative · Stocks · Technical Analysis
 
-## Scope
+## ValueRay on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for ValueRay is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/valueray/](https://apis.io/providers/valueray/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (1)
 
-- AI/LLM
-- ETF
-- Financial Data
-- Quantitative
-- Stocks
-- Technical Analysis
+- [ValueRay Symbol Data API](https://apis.io/apis/valueray/valueray-symbol-data-api/) — Aggregated technical, quantitative, and sentiment data for a single symbol.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-06
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### ValueRay Symbol Data API
+Model Context Protocol servers that expose the API to agents.
 
-Returns a comprehensive AI-ready snapshot of a single stock or ETF symbol, aggregating core identifiers (code, ISIN, exchange, sector, industry, peer group), market data (market cap, last price, 52-week range), dividend information (rate, yield, payout, growth, streak), technical indicators (EMA, SMA, ATR, RSI, volatility, volume), risk metrics (safety score, beta, alpha, Sharpe ratio, max drawdown, VaR, tail risk), sentiment (VRO score, buy signals, sector and industry rotation), support and resistance levels, zigzag pivot points, change points, and performance returns from 1d through 5y. Responses include field explanation pointers so AI agents can ground their analysis in published metric definitions.
+- [valueray](https://apis.io/servers/valueray/valueray/)
 
-- **Human URL:** [https://www.valueray.com/api](https://www.valueray.com/api)
-- **Base URL:** `https://www.valueray.com/api/v1`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- AI/LLM
-- ETF
-- Quantitative
-- Sentiment
-- Stocks
-- Symbol Data
-- Technical Analysis
+- [Valueray Agentic Access](https://apis.io/agentic-access/valueray/valueray-agentic-access/)
 
-#### Properties
+#### JSON Schema (1)
 
-- [OpenAPI](openapi/valueray-symbol-data-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/valueray-symbol-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/valueray-symbol-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://www.valueray.com/api)
-- [Field Definitions](https://www.valueray.com/prompts/_explanations.md)
+The data models the API reads and writes.
 
-## Common Properties
+- [ValueRay Symbol Data](https://apis.io/schemas/valueray/valueray-symbol-data/)
+
+#### JSON Structure (1)
+
+Data models expressed in JSON Structure.
+
+- [Valueray Symbol Data Structure](https://apis.io/json-structure/valueray/valueray-symbol-data-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Valueray Context](https://apis.io/jsonld/valueray/valueray-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Valueray Vocabulary](https://apis.io/vocabularies/valueray/valueray-vocabulary/)
+
+#### Examples (1)
+
+Example requests and responses.
+
+- [Valueray Getsymboldata Example](https://apis.io/examples/valueray/valueray-getSymbolData-example/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [ValueRay Symbol Data API](https://apis.io/collections/valueray/open-valueray-symbol-data/)
+- [ValueRay Symbol Data API](https://apis.io/collections/valueray/open-valueray-symbol-data-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [ValueRay — jsonschema rules](https://apis.io/rules/valueray/valueray-jsonschema-spectral-rules/)
+- [ValueRay API Rules](https://apis.io/rules/valueray/valueray-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Valueray Domain Security](https://apis.io/security/valueray/valueray-domain-security/)
+- [Valueray Vulnerability Disclosure](https://apis.io/security/valueray/valueray-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Valueray Plans Pricing](https://apis.io/plans/valueray/valueray-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Valueray Rate Limits](https://apis.io/rate-limits/valueray/valueray-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Valueray Finops](https://apis.io/finops/valueray/valueray-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.valueray.com/)
 - [Documentation](https://www.valueray.com/api)
-- [Field Definitions](https://www.valueray.com/prompts/_explanations.md)
-- [Screener](https://www.valueray.com/presets/long-setups)
-- [Plans](plans/valueray-plans-pricing.yml)
-- [Rate Limits](rate-limits/valueray-rate-limits.yml)
-- [Fin Ops](finops/valueray-finops.yml)
-- [Vocabulary](vocabulary/valueray-vocabulary.yml)
-- [JSON-LD](json-ld/valueray-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [L L Ms Txt](https://www.valueray.com/llms.txt)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 29.8** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 55.6 |
+| Contract governance | 27.3 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 9.5 |
+| Access clarity | 5.3 |
+
+**Agent readiness 33.6** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | verified |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 21.3** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/valueray/](https://apis.io/providers/valueray/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ValueRay: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/valueray/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
